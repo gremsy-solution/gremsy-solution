@@ -63,11 +63,7 @@
   
 ## 📱 NexGCS
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
-### [Mobile NexGCS](https://github.com/GremsySolutions/Mobile-NexGCS)
+### 📱 [Mobile NexGCS](https://github.com/GremsySolutions/Mobile-NexGCS)
 **Android Ground Control Station**
 
 A comprehensive, high-performance GCS application optimized for Android devices. Designed for field operations, it handles real-time telemetry rendering and complex mission planning on the go.
@@ -79,15 +75,22 @@ A comprehensive, high-performance GCS application optimized for Android devices.
 - 📱 Real-time MAVLink data parsing and transfer
 - 🔋 Optimized for battery and resource efficiency
 
-<br/><br/>
+**Tech Stack:**  
+![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)
+![Jetpack Compose](https://img.shields.io/badge/Jetpack_Compose-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![JNI/NDK](https://img.shields.io/badge/JNI%2FNDK-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+
+<br/>
 <p align="center">
   <img src="assets/nexgcs-mobile-flightview.jpg" width="48%" alt="Mobile Flight View" />
   <img src="assets/nexgcs-mobile-camera.jpg" width="48%" alt="Mobile Camera" />
 </p>
-</td>
-<td width="50%" valign="top">
 
-### [Windows NexGCS](https://github.com/gremsy-solution/NexGCS-Windows)
+---
+
+### 💻 [Windows NexGCS](https://github.com/gremsy-solution/NexGCS-Windows)
 **Desktop Ground Control Station**
 
 A robust desktop client built to leverage maximum hardware performance for complex mission monitoring, low-latency video streaming, and detailed telemetry analysis.
@@ -98,26 +101,63 @@ A robust desktop client built to leverage maximum hardware performance for compl
 - ⚡ High-performance desktop data processing
 - 🔌 Direct hardware-to-software protocol integration
 
-<br/><br/>
-<p align="center">
-  <img src="assets/nexgcs-windows_dashboard.png" width="48%" alt="Windows Dashboard" />
-  <img src="assets/nexgcs-windows-camera.png" width="48%" alt="Windows Camera" />
-</p>
-
-</td>
-</tr>
-</table>
-
-**Tech Stack:**
-
-![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)
-![Jetpack Compose](https://img.shields.io/badge/Jetpack_Compose-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)
+**Tech Stack:**  
 ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
 ![WinUI3](https://img.shields.io/badge/WinUI3-0078D4?style=for-the-badge&logo=windows&logoColor=white)
-![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
-![JNI/NDK](https://img.shields.io/badge/JNI%2FNDK-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+
+#### 1. Multiple Window Monitor
+Supports multi-screen workflows to monitor different aspects of the flight simultaneously:
+- **Telemetry**: Real-time automated data transmission (altitude, speed, attitude, battery, GPS status, and sensor diagnostics) from the UAV to the GCS for continuous monitoring.
+  <br/><br/>
+  <p align="center">
+    <img src="assets/mul_window_parameter.png" width="80%" alt="Telemetry Parameter Window" />
+  </p>
+- **Mission Status**: Real-time display of flight mode, active waypoint progress, and UAV operational metrics.
+- **Flight Log**: Live event log viewer for real-time flight notifications and system messages.
+- **Realtime Streaming**: Low-latency live video feed window from airborne EO/IR sensors.
+  <br/><br/>
+  <p align="center">
+    <img src="assets/mul_window_flight_screen.png" width="80%" alt="Multiple Window Flight Screen" />
+  </p>
+
+#### 2. Monitor Camera
+Dedicated camera view for live video feedback, optical/thermal vision switching, and full-screen payload monitoring.
+<br/><br/>
+<p align="center">
+  <img src="assets/nexgcs-windows-camera.png" width="80%" alt="Monitor Camera" />
+</p>
+
+#### 3. Camera Settings
+Fine-grained payload and sensor control including ISO, exposure, white balance, zoom, shutter speed, storage management, and optical ↔ thermal IR stream toggling.
+<br/><br/>
+<p align="center">
+  <img src="assets/mul_window_camera_settings.png" width="80%" alt="Camera Settings" />
+</p>
+
+#### 4. Mission Planning
+Comprehensive flight path creation, autonomous mission configuration, waypoint parameter editing, survey mapping, and waypoint library management.
+<br/><br/>
+<p align="center">
+  <img src="assets/mission_mapping.png" width="32%" alt="Mission Mapping" />
+  <img src="assets/mission_waypoint.png" width="32%" alt="Mission Waypoint" />
+  <img src="assets/mission_library.png" width="32%" alt="Mission Library" />
+</p>
+
+#### 5. Flight Log
+Detailed flight log recording and inspection tool, allowing operators to review historical flight data, track telemetry graphs, and analyze mission metrics post-flight.
+<br/><br/>
+<p align="center">
+  <img src="assets/flight_log_list.png" width="80%" alt="Flight Log List" />
+</p>
+
+#### 6. DevTools
+Integrated developer tools for real-time MAVLink message inspection, raw packet debugging, manual command sending, and protocol diagnostics.
+<br/><br/>
+<p align="center">
+  <img src="assets/mul_window_devtools.png" width="80%" alt="DevTools Window" />
+</p>
 
 ---
 
