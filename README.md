@@ -84,8 +84,8 @@ A comprehensive, high-performance GCS application optimized for Android devices.
 
 <br/>
 <p align="center">
-  <img src="assets/nexgcs-mobile-flightview.jpg" width="48%" alt="Mobile Flight View" />
-  <img src="assets/nexgcs-mobile-camera.jpg" width="48%" alt="Mobile Camera" />
+  <img src="assets/flight_view.png" width="48%" alt="Mobile Flight View" />
+  <img src="assets/camera_view.png" width="48%" alt="Mobile Camera" />
 </p>
 
 ---
@@ -122,21 +122,19 @@ Supports multi-screen workflows to monitor different aspects of the flight simul
     <img src="assets/mul_window_flight_screen.png" width="80%" alt="Multiple Window Flight Screen" />
   </p>
 
-#### 2. Monitor Camera
-Dedicated camera view for live video feedback, optical/thermal vision switching, and full-screen payload monitoring.
-<br/><br/>
-<p align="center">
-  <img src="assets/nexgcs-windows-camera.png" width="80%" alt="Monitor Camera" />
-</p>
+#### 2. Camera Settings
+Comprehensive payload configuration, sensor control, mode switching, and real-time gimbal operation:
+- **Capabilities & Parameters**: Fine-grained sensor adjustments including ISO, exposure, shutter speed, white balance, optical zoom, photo capture, video recording, and storage management (internal / microSD).
+- **Supported Modes**:
+  - *Capture Modes*: Single Photo, Burst, Interval/Time-lapse, and Video Recording.
+  - *Vision Stream Modes*: Optical (EO), Thermal (IR), and Dual-Stream / Picture-in-Picture (PiP) toggling.
+- **Gimbal Control**: Real-time 3-axis stabilization (Pitch, Roll, Yaw), mode selection (Yaw Follow / Lock Mode, Auto-Centering), angle/rate positioning, and status telemetry monitoring.
+  <br/><br/>
+  <p align="center">
+    <img src="assets/mul_window_camera_settings.png" width="80%" alt="Camera Settings" />
+  </p>
 
-#### 3. Camera Settings
-Fine-grained payload and sensor control including ISO, exposure, white balance, zoom, shutter speed, storage management, and optical ↔ thermal IR stream toggling.
-<br/><br/>
-<p align="center">
-  <img src="assets/mul_window_camera_settings.png" width="80%" alt="Camera Settings" />
-</p>
-
-#### 4. Mission Planning
+#### 3. Mission Planning
 Comprehensive flight path creation, autonomous mission configuration, waypoint parameter editing, survey mapping, and waypoint library management.
 <br/><br/>
 <p align="center">
@@ -145,14 +143,14 @@ Comprehensive flight path creation, autonomous mission configuration, waypoint p
   <img src="assets/mission_library.png" width="32%" alt="Mission Library" />
 </p>
 
-#### 5. Flight Log
+#### 4. Flight Log
 Detailed flight log recording and inspection tool, allowing operators to review historical flight data, track telemetry graphs, and analyze mission metrics post-flight.
 <br/><br/>
 <p align="center">
   <img src="assets/flight_log_list.png" width="80%" alt="Flight Log List" />
 </p>
 
-#### 6. DevTools
+#### 5. DevTools
 Integrated developer tools for real-time MAVLink message inspection, raw packet debugging, manual command sending, and protocol diagnostics.
 <br/><br/>
 <p align="center">
