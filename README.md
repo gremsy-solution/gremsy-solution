@@ -109,11 +109,7 @@ A robust desktop client built to leverage maximum hardware performance for compl
 
 #### 1. Multiple Window Monitor
 Supports multi-screen workflows to monitor different aspects of the flight simultaneously:
-- **Telemetry**: Real-time automated data transmission (altitude, speed, attitude, battery, GPS status, and sensor diagnostics) from the UAV to the GCS for continuous monitoring.
-  <br/><br/>
-  <p align="center">
-    <img src="assets/mul_window_parameter.png" width="80%" alt="Telemetry Parameter Window" />
-  </p>
+- **Telemetry**: Real-time automated data transmission (altitude, speed, attitude, battery, GPS status, and sensor diagnostics) from the UAV to the GCS for continuous flight monitoring.
 - **Mission Status**: Real-time display of flight mode, active waypoint progress, and UAV operational metrics.
 - **Flight Log**: Live event log viewer for real-time flight notifications and system messages.
 - **Realtime Streaming**: Low-latency live video feed window from airborne EO/IR sensors.
@@ -155,6 +151,13 @@ Integrated developer tools for real-time MAVLink message inspection, raw packet 
 <br/><br/>
 <p align="center">
   <img src="assets/mul_window_devtools.png" width="80%" alt="DevTools Window" />
+</p>
+
+#### 6. Parameters
+Dedicated parameter management window for viewing, filtering, searching, and tuning onboard UAV & payload parameters in real time.
+<br/><br/>
+<p align="center">
+  <img src="assets/mul_window_parameter.png" width="80%" alt="Parameter Window" />
 </p>
 
 ---
