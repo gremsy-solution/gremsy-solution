@@ -84,8 +84,8 @@ A comprehensive, high-performance GCS application optimized for Android devices.
 
 <br/>
 <p align="center">
-  <img src="assets/flight_view.png" width="48%" alt="Mobile Flight View" />
-  <img src="assets/camera_view.png" width="48%" alt="Mobile Camera" />
+  <img src="assets/flight_view.png" width="50%" alt="Mobile Flight View" />
+  <img src="assets/camera_view.png" width="50%" alt="Mobile Camera" />
 </p>
 
 ---
@@ -109,57 +109,98 @@ A robust desktop client built to leverage maximum hardware performance for compl
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 
-#### 1. Multiple Window Monitor
-Supports multi-screen workflows to monitor different aspects of the flight simultaneously:
-- **Telemetry**: Real-time automated data transmission (altitude, speed, attitude, battery, GPS status, and sensor diagnostics) from the UAV to the GCS for continuous flight monitoring.
-- **Mission Status**: Real-time display of flight mode, active waypoint progress, and UAV operational metrics.
-- **Flight Log**: Live event log viewer for real-time flight notifications and system messages.
-- **Realtime Streaming**: Low-latency live video feed window from airborne EO/IR sensors.
+#### 1. Multi-Monitor
+On desktop, NexGCS can pop key views out into separate windows that can be moved and resized independently — including onto a second monitor — while the main window keeps the map and the full flight HUD (altitude, speed, attitude, battery, GPS, flight mode):
+
+- **Live Video**: the real-time camera stream in its own resizable window, so the map and the video can be watched side by side.
+- **Camera & Payload**: camera status (exposure, recording, storage, stream state), gimbal control with an on-screen joystick, and camera settings in one panel.
+- **System Information**: sensor health and a live feed of vehicle and system messages, with an unread-message counter.
+- **Preflight Check**: the preflight checklist, open beside the map rather than covering it.
+- **Vehicle Settings & Parameters**: vehicle configuration and parameter editing, without leaving the flight view.
+
+#### 2. Flight View Layout
+The desktop flight screen is split into five fixed regions, so the map or video is never covered by controls:
+
+- **Status Bar** (top): payload, flight mode and flight status, centre notifications, and link health at a glance — GPS, RC/telemetry signal, Remote ID, and battery. Clicking the flight status opens the System Information window.
+- **Control Rail** (left): flight commands — Takeoff/Land, RTL, Mission start/pause, and quick actions (altitude, loiter radius); payload shortcuts — zoom, photo, record, object tracking and detection, camera settings; and view controls — swap map/video, corner widget, and picture-in-picture.
+- **Main Stage** (centre): the map or the live video, swappable at any time; in PiP mode the video moves to its own window.
+- **Information Panel** (right): live cards for **Vehicle** (status, telemetry, and firmware/system info), **Location** (coordinates, MSL/AGL altitude, speed, heading), **Mission** (status, waypoint count, progress, shortcut to the planner), and **Flight Logs** (search, sort, download, replay, export). It hides automatically when the video takes over the stage.
+- **Telemetry** (bottom): flight distance, ground speed, distance to home, climb rate, altitude above home, and flight time.
   <br/><br/>
   <p align="center">
-    <img src="assets/mul_window_flight_screen.png" width="80%" alt="Multiple Window Flight Screen" />
+    <img src="assets/mul_window_flight_screen.png" width="100%" alt="Multiple Window Flight Screen" />
   </p>
 
-#### 2. Camera Settings
-Comprehensive payload configuration, sensor control, mode switching, and real-time gimbal operation:
-- **Capabilities & Parameters**: Fine-grained sensor adjustments including ISO, exposure, shutter speed, white balance, optical zoom, photo capture, video recording, and storage management (internal / microSD).
-- **Supported Modes**:
-  - *Capture Modes*: Single Photo, Burst, Interval/Time-lapse, and Video Recording.
-  - *Vision Stream Modes*: Optical (EO), Thermal (IR), and Dual-Stream / Picture-in-Picture (PiP) toggling.
-- **Gimbal Control**: Real-time 3-axis stabilization (Pitch, Roll, Yaw), mode selection (Yaw Follow / Lock Mode, Auto-Centering), angle/rate positioning, and status telemetry monitoring.
-  <br/><br/>
+#### 3. Camera Settings
+A dedicated, movable window brings camera configuration, live camera status, and gimbal control together in one place:
+
+- **Camera Info & Parameters**: live readings of ISO, shutter speed, exposure (EV / AE), resolution, frame rate, and zoom — editable directly where the camera supports it — plus recording time, stream status, and storage usage with low-space warnings.
+- **Camera Settings**: every parameter the connected camera reports (via the MAVLink camera definition) is listed and adjustable, so options such as white balance or colour mode appear automatically for cameras that offer them.
+- **Capture**: photo capture and video recording, with zoom in/out.
+- **Gimbal Control**: an on-screen joystick for smooth rate-based pointing, live pitch/roll/yaw readout with a heading dial, Yaw Follow / Yaw Lock, mount mode selection, and one-tap Centre, Tilt 90° and Retract. A Take/Release Control flow prevents conflicts when another ground station is driving the gimbal.
+- **AI Assist**: object tracking and object detection modes, with live target status (searching, target locked, detecting).
+- **RC Mapping**: view and change which RC channels and AUX functions drive the mount.
+  On Gremsy VIO payloads this includes switching the stream between the optical (EO) and thermal (IR) camera.
+<br/><br/>
   <p align="center">
-    <img src="assets/mul_window_camera_settings.png" width="80%" alt="Camera Settings" />
+    <img src="assets/mul_window_camera_settings.png" width="100%" alt="Camera Settings" />
   </p>
 
-#### 3. Mission Planning
-Comprehensive flight path creation, autonomous mission configuration, waypoint parameter editing, survey mapping, and waypoint library management.
+#### 4. Mission Planning
+Plan, configure, save and upload autonomous missions from an interactive map, with live distance, time and terrain feedback while you edit.
+- **Mission Library**: every mission is saved as a `.kmz` file with a map thumbnail. Search, filter by type, preview stats (distance, time, max altitude, average speed, waypoints), import, edit, duplicate, delete, and upload to the vehicle in one click.
+
+- **Waypoint Missions**: place Home, Takeoff and waypoints directly on the map, then fine-tune each point — latitude, longitude, altitude and flight speed. Every waypoint can carry its own payload actions: 
+  - *Camera*: take a photo, start/stop timed or distance-based photo capture, start/stop video, and switch camera mode. 
+  - *Gimbal*: set pitch and yaw for the shot.
+
+Choose the end-of-mission behaviour (Return to Launch or none) and check the route against a terrain elevation profile before flight.
+- **Survey Mapping**: draw the area to cover and NexGCS generates a parallel-line (lawnmower) grid. Set the camera from its sensor and lens specifications, choose altitude or target GSD, line angle, spacing and entry corner, and pick the capture method — continuous Distance Trigger or Hover & Capture with a hold delay. Area, line count, distance and flight time update live.
+- **Corridor & Structure Scans** *(Android)*: linear corridor and structure-inspection mission templates.
 <br/><br/>
 <p align="center">
-  <img src="assets/mission_mapping.png" width="32%" alt="Mission Mapping" />
-  <img src="assets/mission_waypoint.png" width="32%" alt="Mission Waypoint" />
-  <img src="assets/mission_library.png" width="32%" alt="Mission Library" />
+  <img src="assets/mission_mapping.png" width="33%" alt="Mission Mapping" />
+  <img src="assets/mission_waypoint.png" width="33%" alt="Mission Waypoint" />
+  <img src="assets/mission_library.png" width="33%" alt="Mission Library" />
 </p>
 
-#### 4. Flight Log
-Detailed flight log recording and inspection tool, allowing operators to review historical flight data, track telemetry graphs, and analyze mission metrics post-flight.
+#### 5. Flight Log
+Automatic telemetry recording with full flight replay, so any past flight can be reviewed exactly as it was flown.
+
+- **Automatic Recording**: every live vehicle connection is recorded to a standard MAVLink telemetry log (`.tlog`), with no operator action needed. Older logs are rotated out automatically so recording never fills the disk.
+- **Flight Replay**: play any log back on the flight screen — the vehicle, its track and its telemetry move as they did in the air — with play/pause, seek and playback-speed control. NexGCS warns before starting a replay while a real vehicle is armed.
+- **Log Management**: a searchable, sortable log table showing date, duration and size; open external `.tlog` files; download/export, show in folder, rename and delete; storage usage at a glance.
+- **Quick Access**: the newest logs are also listed in the flight view's information panel for one-click replay.
 <br/><br/>
 <p align="center">
-  <img src="assets/flight_log_list.png" width="80%" alt="Flight Log List" />
+  <img src="assets/flight_log_list.png" width="100%" alt="Flight Log List" />
 </p>
 
-#### 5. DevTools
-Integrated developer tools for real-time MAVLink message inspection, raw packet debugging, manual command sending, and protocol diagnostics.
+#### 6. DevTools
+Built-in diagnostic panels for integrators and field engineers. Each opens in its own movable, resizable window alongside the running app.
+
+- **MAVLink Inspector**: every incoming message, grouped by system and component, with live field values, min/max statistics, two real-time plots for any field, search, and CSV export for offline analysis.
+- **MAVLink Shell**: a terminal straight into the autopilot's onboard shell, with command history and colour output — for running onboard commands without a separate tool.
+- **Logger**: the application log, filterable by level (debug, info, warning, error) and by module, with search, timestamps, auto-scroll and per-type counts.
+- **Network Log**: outgoing HTTP requests with URL, method, status and response.
+- **Crash Reports** *(Android)*: captured crash reports for diagnosis.
+- **Parameters**: the full parameter editor (see *Parameters*) is also available as a DevTools panel, so it can be opened next to the Inspector or Shell while diagnosing.
 <br/><br/>
 <p align="center">
-  <img src="assets/mul_window_devtools.png" width="80%" alt="DevTools Window" />
+  <img src="assets/mul_window_devtools.png" width="100%" alt="DevTools Window" />
 </p>
 
-#### 6. Parameters
-Dedicated parameter management window for viewing, filtering, searching, and tuning onboard UAV & payload parameters in real time.
+#### 7. Parameters
+A dedicated parameter window for viewing and tuning every onboard parameter — the autopilot first, then any other component that exposes parameters, such as a gimbal or camera.
+
+- **Browse & Search**: parameters are organised by category and group, with counts, and a search bar suggests matches as you type.
+- **Safe Editing**: each parameter opens an editor showing its description, valid range, default value and units; changes are written to the vehicle immediately on save.
+- **Backup & Restore**: save the full parameter set to a `.param` file and load it back, for backups or for cloning a configuration across vehicles.
+- **Reset & Reboot**: refresh from the vehicle, reset to firmware defaults or to the vehicle's stored configuration, and reboot the vehicle so changes take effect.
+- **RC To Param**: bind an RC channel to a parameter so it can be tuned in flight from the transmitter, with configurable min, max, centre and scale.
 <br/><br/>
 <p align="center">
-  <img src="assets/mul_window_parameter.png" width="80%" alt="Parameter Window" />
+  <img src="assets/mul_window_parameter.png" width="100%" alt="Parameter Window" />
 </p>
 
 ---
