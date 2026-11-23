@@ -84,8 +84,8 @@ A comprehensive, high-performance GCS application optimized for Android devices.
 
 <br/>
 <p align="center">
-  <img src="assets/flight_view.png" width="50%" alt="Mobile Flight View" />
-  <img src="assets/camera_view.png" width="50%" alt="Mobile Camera" />
+  <img src="assets/flight_view.png" width="48%" alt="Mobile Flight View" />
+  <img src="assets/camera_view.png" width="48%" alt="Mobile Camera" />
 </p>
 
 ---
@@ -117,6 +117,9 @@ On desktop, NexGCS can pop key views out into separate windows that can be moved
 - **System Information**: sensor health and a live feed of vehicle and system messages, with an unread-message counter.
 - **Preflight Check**: the preflight checklist, open beside the map rather than covering it.
 - **Vehicle Settings & Parameters**: vehicle configuration and parameter editing, without leaving the flight view.
+  <p align="center">
+    <img src="assets/nexgcs-multi_window.png" width="100%" alt="Camera Settings" />
+  </p>
 
 #### 2. Flight View Layout
 The desktop flight screen is split into five fixed regions, so the map or video is never covered by controls:
@@ -128,7 +131,7 @@ The desktop flight screen is split into five fixed regions, so the map or video 
 - **Telemetry** (bottom): flight distance, ground speed, distance to home, climb rate, altitude above home, and flight time.
   <br/><br/>
   <p align="center">
-    <img src="assets/mul_window_flight_screen.png" width="100%" alt="Multiple Window Flight Screen" />
+    <img src="assets/nexgcs_window_flight_view.png" width="100%" alt="Multiple Window Flight Screen" />
   </p>
 
 #### 3. Camera Settings
@@ -143,7 +146,7 @@ A dedicated, movable window brings camera configuration, live camera status, and
   On Gremsy VIO payloads this includes switching the stream between the optical (EO) and thermal (IR) camera.
 <br/><br/>
   <p align="center">
-    <img src="assets/mul_window_camera_settings.png" width="100%" alt="Camera Settings" />
+    <img src="assets/nexgcs_window_camera_settings.png" width="100%" alt="Camera Settings" />
   </p>
 
 #### 4. Mission Planning
@@ -159,9 +162,9 @@ Choose the end-of-mission behaviour (Return to Launch or none) and check the rou
 - **Corridor & Structure Scans** *(Android)*: linear corridor and structure-inspection mission templates.
 <br/><br/>
 <p align="center">
+  <img src="assets/mission_library.png" width="33%" alt="Mission Library" />
   <img src="assets/mission_mapping.png" width="33%" alt="Mission Mapping" />
   <img src="assets/mission_waypoint.png" width="33%" alt="Mission Waypoint" />
-  <img src="assets/mission_library.png" width="33%" alt="Mission Library" />
 </p>
 
 #### 5. Flight Log
@@ -177,17 +180,17 @@ Automatic telemetry recording with full flight replay, so any past flight can be
 </p>
 
 #### 6. DevTools
-Built-in diagnostic panels for integrators and field engineers. Each opens in its own movable, resizable window alongside the running app.
+A built-in log viewer that shows what the application and the vehicle link are doing in real time, so issues can be diagnosed in the field without extra tools.
 
-- **MAVLink Inspector**: every incoming message, grouped by system and component, with live field values, min/max statistics, two real-time plots for any field, search, and CSV export for offline analysis.
-- **MAVLink Shell**: a terminal straight into the autopilot's onboard shell, with command history and colour output — for running onboard commands without a separate tool.
-- **Logger**: the application log, filterable by level (debug, info, warning, error) and by module, with search, timestamps, auto-scroll and per-type counts.
-- **Network Log**: outgoing HTTP requests with URL, method, status and response.
-- **Crash Reports** *(Android)*: captured crash reports for diagnosis.
-- **Parameters**: the full parameter editor (see *Parameters*) is also available as a DevTools panel, so it can be opened next to the Inspector or Shell while diagnosing.
+- **Live Log Table**: every log entry with time, level, source tag and message, updating as it happens, with auto-scroll to follow the newest entries.
+- **Level Filtering**: show or hide Debug, Info, Warning and Error entries with one click.
+- **Filter by Module**: logs are grouped by the part of the app that wrote them, each with its own count, so you can focus on a single subsystem.
+- **Search**: find entries by text across the whole log.
+- **Statistics & Connection**: total log count and per-type counts, plus the live vehicle connection status beside the log.
+- **View Options**: toggle timestamps and auto-scroll; clear the log (with confirmation).
 <br/><br/>
 <p align="center">
-  <img src="assets/mul_window_devtools.png" width="100%" alt="DevTools Window" />
+  <img src="assets/nexgcs_window_logger.png" width="100%" alt="DevTools Window" />
 </p>
 
 #### 7. Parameters
@@ -200,7 +203,7 @@ A dedicated parameter window for viewing and tuning every onboard parameter — 
 - **RC To Param**: bind an RC channel to a parameter so it can be tuned in flight from the transmitter, with configurable min, max, centre and scale.
 <br/><br/>
 <p align="center">
-  <img src="assets/mul_window_parameter.png" width="100%" alt="Parameter Window" />
+  <img src="assets/nexgcs_window_parameter.png" width="100%" alt="Parameter Window" />
 </p>
 
 ---
