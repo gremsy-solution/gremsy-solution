@@ -63,11 +63,7 @@
   
 ## 📱 NexGCS
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
-### [Mobile NexGCS](https://github.com/GremsySolutions/Mobile-NexGCS)
+### 📱 [Mobile NexGCS](https://github.com/GremsySolutions/Mobile-NexGCS)
 **Android Ground Control Station**
 
 A comprehensive, high-performance GCS application optimized for Android devices. Designed for field operations, it handles real-time telemetry rendering and complex mission planning on the go.
@@ -79,15 +75,22 @@ A comprehensive, high-performance GCS application optimized for Android devices.
 - 📱 Real-time MAVLink data parsing and transfer
 - 🔋 Optimized for battery and resource efficiency
 
-<br/><br/>
-<p align="center">
-  <img src="assets/nexgcs-mobile-flightview.jpg" width="48%" alt="Mobile Flight View" />
-  <img src="assets/nexgcs-mobile-camera.jpg" width="48%" alt="Mobile Camera" />
-</p>
-</td>
-<td width="50%" valign="top">
+**Tech Stack:**  
+![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)
+![Jetpack Compose](https://img.shields.io/badge/Jetpack_Compose-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![JNI/NDK](https://img.shields.io/badge/JNI%2FNDK-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 
-### [Windows NexGCS](https://github.com/gremsy-solution/NexGCS-Windows)
+<br/>
+<p align="center">
+  <img src="assets/flight_view.png" width="48%" alt="Mobile Flight View" />
+  <img src="assets/camera_view.png" width="48%" alt="Mobile Camera" />
+</p>
+
+---
+
+### 💻 [Windows NexGCS](https://github.com/gremsy-solution/NexGCS-Windows)
 **Desktop Ground Control Station**
 
 A robust desktop client built to leverage maximum hardware performance for complex mission monitoring, low-latency video streaming, and detailed telemetry analysis.
@@ -98,26 +101,110 @@ A robust desktop client built to leverage maximum hardware performance for compl
 - ⚡ High-performance desktop data processing
 - 🔌 Direct hardware-to-software protocol integration
 
-<br/><br/>
-<p align="center">
-  <img src="assets/nexgcs-windows_dashboard.png" width="48%" alt="Windows Dashboard" />
-  <img src="assets/nexgcs-windows-camera.png" width="48%" alt="Windows Camera" />
-</p>
-
-</td>
-</tr>
-</table>
-
-**Tech Stack:**
-
+**Tech Stack:**  
 ![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)
 ![Jetpack Compose](https://img.shields.io/badge/Jetpack_Compose-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
 ![WinUI3](https://img.shields.io/badge/WinUI3-0078D4?style=for-the-badge&logo=windows&logoColor=white)
-![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
-![JNI/NDK](https://img.shields.io/badge/JNI%2FNDK-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+
+#### 1. Multi-Monitor
+On desktop, NexGCS can pop key views out into separate windows that can be moved and resized independently — including onto a second monitor — while the main window keeps the map and the full flight HUD (altitude, speed, attitude, battery, GPS, flight mode):
+
+- **Live Video**: the real-time camera stream in its own resizable window, so the map and the video can be watched side by side.
+- **Camera & Payload**: camera status (exposure, recording, storage, stream state), gimbal control with an on-screen joystick, and camera settings in one panel.
+- **System Information**: sensor health and a live feed of vehicle and system messages, with an unread-message counter.
+- **Preflight Check**: the preflight checklist, open beside the map rather than covering it.
+- **Vehicle Settings & Parameters**: vehicle configuration and parameter editing, without leaving the flight view.
+  <p align="center">
+    <img src="assets/nexgcs-multi_window.png" width="100%" alt="Camera Settings" />
+  </p>
+
+#### 2. Flight View Layout
+The desktop flight screen is split into five fixed regions, so the map or video is never covered by controls:
+
+- **Status Bar** (top): payload, flight mode and flight status, centre notifications, and link health at a glance — GPS, RC/telemetry signal, Remote ID, and battery. Clicking the flight status opens the System Information window.
+- **Control Rail** (left): flight commands — Takeoff/Land, RTL, Mission start/pause, and quick actions (altitude, loiter radius); payload shortcuts — zoom, photo, record, object tracking and detection, camera settings; and view controls — swap map/video, corner widget, and picture-in-picture.
+- **Main Stage** (centre): the map or the live video, swappable at any time; in PiP mode the video moves to its own window.
+- **Information Panel** (right): live cards for **Vehicle** (status, telemetry, and firmware/system info), **Location** (coordinates, MSL/AGL altitude, speed, heading), **Mission** (status, waypoint count, progress, shortcut to the planner), and **Flight Logs** (search, sort, download, replay, export). It hides automatically when the video takes over the stage.
+- **Telemetry** (bottom): flight distance, ground speed, distance to home, climb rate, altitude above home, and flight time.
+  <br/><br/>
+  <p align="center">
+    <img src="assets/nexgcs_window_flight_view.png" width="100%" alt="Multiple Window Flight Screen" />
+  </p>
+
+#### 3. Camera Settings
+A dedicated, movable window brings camera configuration, live camera status, and gimbal control together in one place:
+
+- **Camera Info & Parameters**: live readings of ISO, shutter speed, exposure (EV / AE), resolution, frame rate, and zoom — editable directly where the camera supports it — plus recording time, stream status, and storage usage with low-space warnings.
+- **Camera Settings**: every parameter the connected camera reports (via the MAVLink camera definition) is listed and adjustable, so options such as white balance or colour mode appear automatically for cameras that offer them.
+- **Capture**: photo capture and video recording, with zoom in/out.
+- **Gimbal Control**: an on-screen joystick for smooth rate-based pointing, live pitch/roll/yaw readout with a heading dial, Yaw Follow / Yaw Lock, mount mode selection, and one-tap Centre, Tilt 90° and Retract. A Take/Release Control flow prevents conflicts when another ground station is driving the gimbal.
+- **AI Assist**: object tracking and object detection modes, with live target status (searching, target locked, detecting).
+- **RC Mapping**: view and change which RC channels and AUX functions drive the mount.
+  On Gremsy VIO payloads this includes switching the stream between the optical (EO) and thermal (IR) camera.
+<br/><br/>
+  <p align="center">
+    <img src="assets/nexgcs_window_camera_settings.png" width="100%" alt="Camera Settings" />
+  </p>
+
+#### 4. Mission Planning
+Plan, configure, save and upload autonomous missions from an interactive map, with live distance, time and terrain feedback while you edit.
+- **Mission Library**: every mission is saved as a `.kmz` file with a map thumbnail. Search, filter by type, preview stats (distance, time, max altitude, average speed, waypoints), import, edit, duplicate, delete, and upload to the vehicle in one click.
+
+- **Waypoint Missions**: place Home, Takeoff and waypoints directly on the map, then fine-tune each point — latitude, longitude, altitude and flight speed. Every waypoint can carry its own payload actions: 
+  - *Camera*: take a photo, start/stop timed or distance-based photo capture, start/stop video, and switch camera mode. 
+  - *Gimbal*: set pitch and yaw for the shot.
+
+Choose the end-of-mission behaviour (Return to Launch or none) and check the route against a terrain elevation profile before flight.
+- **Survey Mapping**: draw the area to cover and NexGCS generates a parallel-line (lawnmower) grid. Set the camera from its sensor and lens specifications, choose altitude or target GSD, line angle, spacing and entry corner, and pick the capture method — continuous Distance Trigger or Hover & Capture with a hold delay. Area, line count, distance and flight time update live.
+- **Corridor & Structure Scans** *(Android)*: linear corridor and structure-inspection mission templates.
+<br/><br/>
+<p align="center">
+  <img src="assets/mission_library.png" width="33%" alt="Mission Library" />
+  <img src="assets/mission_mapping.png" width="33%" alt="Mission Mapping" />
+  <img src="assets/mission_waypoint.png" width="33%" alt="Mission Waypoint" />
+</p>
+
+#### 5. Flight Log
+Automatic telemetry recording with full flight replay, so any past flight can be reviewed exactly as it was flown.
+
+- **Automatic Recording**: every live vehicle connection is recorded to a standard MAVLink telemetry log (`.tlog`), with no operator action needed. Older logs are rotated out automatically so recording never fills the disk.
+- **Flight Replay**: play any log back on the flight screen — the vehicle, its track and its telemetry move as they did in the air — with play/pause, seek and playback-speed control. NexGCS warns before starting a replay while a real vehicle is armed.
+- **Log Management**: a searchable, sortable log table showing date, duration and size; open external `.tlog` files; download/export, show in folder, rename and delete; storage usage at a glance.
+- **Quick Access**: the newest logs are also listed in the flight view's information panel for one-click replay.
+<br/><br/>
+<p align="center">
+  <img src="assets/flight_log_list.png" width="100%" alt="Flight Log List" />
+</p>
+
+#### 6. DevTools
+A built-in log viewer that shows what the application and the vehicle link are doing in real time, so issues can be diagnosed in the field without extra tools.
+
+- **Live Log Table**: every log entry with time, level, source tag and message, updating as it happens, with auto-scroll to follow the newest entries.
+- **Level Filtering**: show or hide Debug, Info, Warning and Error entries with one click.
+- **Filter by Module**: logs are grouped by the part of the app that wrote them, each with its own count, so you can focus on a single subsystem.
+- **Search**: find entries by text across the whole log.
+- **Statistics & Connection**: total log count and per-type counts, plus the live vehicle connection status beside the log.
+- **View Options**: toggle timestamps and auto-scroll; clear the log (with confirmation).
+<br/><br/>
+<p align="center">
+  <img src="assets/nexgcs_window_logger.png" width="100%" alt="DevTools Window" />
+</p>
+
+#### 7. Parameters
+A dedicated parameter window for viewing and tuning every onboard parameter — the autopilot first, then any other component that exposes parameters, such as a gimbal or camera.
+
+- **Browse & Search**: parameters are organised by category and group, with counts, and a search bar suggests matches as you type.
+- **Safe Editing**: each parameter opens an editor showing its description, valid range, default value and units; changes are written to the vehicle immediately on save.
+- **Backup & Restore**: save the full parameter set to a `.param` file and load it back, for backups or for cloning a configuration across vehicles.
+- **Reset & Reboot**: refresh from the vehicle, reset to firmware defaults or to the vehicle's stored configuration, and reboot the vehicle so changes take effect.
+- **RC To Param**: bind an RC channel to a parameter so it can be tuned in flight from the transmitter, with configurable min, max, centre and scale.
+<br/><br/>
+<p align="center">
+  <img src="assets/nexgcs_window_parameter.png" width="100%" alt="Parameter Window" />
+</p>
 
 ---
 
